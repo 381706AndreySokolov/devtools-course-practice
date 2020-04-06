@@ -5,14 +5,16 @@
 Matrix::Matrix() : rows(0), cols(0), data() {}
 
 Matrix::Matrix(const int _rows,
-               const int _cols) : rows(_rows), cols(_cols), data(_rows, std::vector<double>(_cols, 0.0)) {}
+               const int _cols) : rows(_rows),
+                                  cols(_cols),
+                                  data(_rows, std::vector<double>(_cols, 0.0)) {}
 
 Matrix::Matrix(const int                              _rows,
                const int                              _cols,
                const std::vector<std::vector<double>> _data) : rows(_rows),
                                                                cols(_cols),
                                                                data(_data) {}
- 
+
 Matrix::Matrix(const Matrix& _matrix) : rows(_matrix.rows),
                                         cols(_matrix.cols),
                                         data(_matrix.data) {}
@@ -89,17 +91,17 @@ Matrix Matrix::operator*(const double& _scalar) const {
 }
 
 Matrix Matrix::operator*(const Matrix& _matrix) const {
-    Matrix result(rows, cols);
+    Matrix res(rows, cols);
 
-    for (int idx{0}; idx < getRows(); ++idx) {
-        for (int jdx{0}; jdx < _matrix.getCols(); ++jdx) {
-            result.data[idx][jdx] = 0;
-            for (int kdx{0}; kdx < getCols(); ++kdx) {
-                result.data[idx][jdx] += data[idx][kdx] * _matrix.data[kdx][jdx];
+    for (int idx{0}; idx < rows; ++idx) {
+        for (int jdx{0}; jdx < _matrix.cols; ++jdx) {
+            res.data[idx][jdx] = 0;
+            for (int kdx{0}; kdx < cols; ++kdx) {
+                res.data[idx][jdx] += data[idx][kdx] * _matrix.data[kdx][jdx];
             }
         }
     }
-    return result;
+    return res;
 }
 
 bool Matrix::operator== (const Matrix& _matrix) const {
@@ -107,7 +109,8 @@ bool Matrix::operator== (const Matrix& _matrix) const {
         return false;
     } else if (cols != _matrix.cols) {
         return false;
-    } else if (data.size() != _matrix.data.size() || data[0U].size() != _matrix.data[0U].size()){
+    } else if (data.size() != _matrix.data.size() ||
+               data[0U].size() != _matrix.data[0U].size()) {
         return false;
     }
     for (int idx{0}; idx < getRows(); ++idx) {
@@ -155,7 +158,6 @@ Matrix Matrix::transpose() {
 }
 
 Matrix Matrix::takeInverseMatrix() {
-
     if (rows != cols) {
         throw "Rows are not equal cols";
     }
@@ -189,8 +191,7 @@ Matrix Matrix::takeInverseMatrix() {
     A0 = A0 * (1 / (N1 * Ninf));
 
     Matrix inv{A0};
-    while (fabs((A * inv).determinant() - 1) >= threshold)
-    {
+    while (fabs((A * inv).determinant() - 1) >= threshold) {
         Matrix prev{inv};
         inv = A * prev;
         inv = inv * -1;
@@ -199,4 +200,4 @@ Matrix Matrix::takeInverseMatrix() {
     }
 
     return inv;
-} 
+}
