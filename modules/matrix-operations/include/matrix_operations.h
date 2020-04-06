@@ -1,6 +1,5 @@
 // Copyright 2020 Sokolov Andrey
 #include <vector>
-#include <algorithm>
 
 #ifndef MODULES_MATRIX_OPERATIONS_INCLUDE_MATRIX_OPERATIONS_H_
 #define MODULES_MATRIX_OPERATIONS_INCLUDE_MATRIX_OPERATIONS_H_

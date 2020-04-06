@@ -1,5 +1,6 @@
-// Copyright 2017 Korniakov Kirill
-
+// Copyright 2020 Sokolov Andrey
+#include <vector>
+#include <algorithm>
 #include "include/matrix_operations.h"
 
 Matrix::Matrix() : rows(0), cols(0), data() {}
@@ -7,7 +8,8 @@ Matrix::Matrix() : rows(0), cols(0), data() {}
 Matrix::Matrix(const int _rows,
                const int _cols) : rows(_rows),
                                   cols(_cols),
-                                  data(_rows, std::vector<double>(_cols, 0.0)) {}
+                                  data(_rows, \
+                                       std::vector<double>(_cols, 0.0)) {}
 
 Matrix::Matrix(const int                              _rows,
                const int                              _cols,
