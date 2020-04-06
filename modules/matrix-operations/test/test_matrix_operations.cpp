@@ -9,8 +9,8 @@ ASSERT_EQ(matrixA.getRows(), matrixB.getRows()); \
 ASSERT_EQ(matrixA.getCols(), matrixB.getCols()); \
 ASSERT_EQ(matrixA.getData().size(), matrixB.getData().size()); \
 ASSERT_EQ(matrixA.getData()[0U].size(), matrixB.getData()[0U].size()); \
-for (size_t idx{0U}; idx < matrixA.getRows(); ++idx) { \
-    for (size_t jdx{0U}; jdx < matrixA.getCols(); ++jdx) { \
+for (int idx{0U}; idx < matrixA.getRows(); ++idx) { \
+    for (int jdx{0U}; jdx < matrixA.getCols(); ++jdx) { \
         ASSERT_NEAR(matrixA.getData()[idx][jdx], matrixB.getData()[idx][jdx], threshold); \
     }\
 }
@@ -18,8 +18,8 @@ for (size_t idx{0U}; idx < matrixA.getRows(); ++idx) { \
 TEST(MatrixOperationsTest, Can_Create_Empty_Matrix) {
     // Arrange
     constexpr double threshold{0.001};
-    size_t rows{26U};
-    size_t cols{12U};
+    int rows{26U};
+    int cols{12U};
 
     // Act
     Matrix matrix(rows, cols);
@@ -50,7 +50,7 @@ TEST(MatrixOperationsTest, Can_Set_Rows) {
                                           {9.1, 2.3, 12.1, 2.3},
                                           {12.3, 4.5, 6.1, 7.9}};
     Matrix matrix(3U, 4U, data);
-    constexpr size_t newRows{2U};
+    constexpr int newRows{2U};
 
     // Act
     matrix.setRows(newRows);
@@ -65,7 +65,7 @@ TEST(MatrixOperationsTest, Can_Set_Cols) {
                                           {9.1, 2.3, 12.1, 2.3},
                                           {12.3, 4.5, 6.1, 7.9}};
     Matrix matrix(3U, 4U, data);
-    constexpr size_t newCols{2U};
+    constexpr int newCols{2U};
 
     // Act
     matrix.setCols(newCols);
@@ -97,7 +97,7 @@ TEST(MatrixOperationsTest, Can_Set_Data) {
 TEST(MatrixOperationsTest, Can_Add_Matrices) {
     // Arrange
     constexpr double threshold{0.001};
-    constexpr size_t size{4U};
+    constexpr int size{4U};
     std::vector<std::vector<double>> dataA{{0.1,   0.2,  0.3,  0.4},
                                            {1.4,   1.3,  1.2,  1.1},
                                            {1.0,   2.0,  3.0,  4.0},
@@ -127,7 +127,7 @@ TEST(MatrixOperationsTest, Can_Add_Matrices) {
 TEST(MatrixOperationsTest, Can_Difference_Matrices) {
     // Arrange
     constexpr double threshold{0.001};
-    constexpr size_t size{4U};
+    constexpr int size{4U};
     std::vector<std::vector<double>> dataA{{0.1,   0.2,  0.3,  0.4},
                                            {1.4,   1.3,  1.2,  1.1},
                                            {1.0,   2.0,  3.0,  4.0},
@@ -157,7 +157,7 @@ TEST(MatrixOperationsTest, Can_Difference_Matrices) {
 TEST(MatrixOperationsTest, Can_Matrix_Scalar_Multiplication) {
     // Arrange
     constexpr double threshold{0.001};
-    constexpr size_t size{4U};
+    constexpr int size{4U};
     constexpr double scalar{1.5};
     std::vector<std::vector<double>> data{{0.1,   0.2,  0.3,  0.4},
                                           {1.4,   1.3,  1.2,  1.1},
@@ -182,7 +182,7 @@ TEST(MatrixOperationsTest, Can_Matrix_Scalar_Multiplication) {
 TEST(MatrixOperationsTest, Can_Matrices_Multiplication) {
     // Arrange
     constexpr double threshold{0.001};
-    constexpr size_t size{6U};
+    constexpr int size{6U};
     std::vector<std::vector<double>> dataA{{ 1.1, 0.0, 0.0, 0.0, 2.2, 0.0 },
                                            { 0.0, 0.0, 3.3, 4.4, 0.0, 0.0 },
                                            { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
@@ -218,7 +218,7 @@ TEST(MatrixOperationsTest, Can_Matrices_Multiplication) {
 TEST(MatrixOperationsTest, Can_Take_Determinant) {
     // Arrange
     constexpr double threshold{0.001};
-    constexpr size_t size{4U};
+    constexpr int size{4U};
     std::vector<std::vector<double>> data{{ 6.1,  2.2, -0.3,  3.4},
                                           { 1.4, 12.3,  1.2,  8.7},
                                           { 5.0,  2.0, 77.0,  6.0},
@@ -236,7 +236,7 @@ TEST(MatrixOperationsTest, Can_Take_Determinant) {
 TEST(MatrixOperationsTest, Can_Take_Zero_Determinant) {
     // Arrange
     constexpr double threshold{0.001};
-    constexpr size_t size{4U};
+    constexpr int size{4U};
     std::vector<std::vector<double>> data{{0.1,   0.2,  0.3,  0.4},
                                           {1.4,   1.3,  1.2,  1.1},
                                           {1.0,   2.0,  3.0,  4.0},
@@ -253,7 +253,7 @@ TEST(MatrixOperationsTest, Can_Take_Zero_Determinant) {
 
 TEST(MatrixOperationsTest, Can_Take_Determinant_With_Zero_Diag) {
     // Arrange
-    constexpr size_t size{4U};
+    constexpr int size{4U};
     std::vector<std::vector<double>> data{{ 0.0, 1.0, 0.0, 11.0},
                                           { 0.0, 0.0, 1.0, 0.0},
                                           { 0.0, 0.0, 0.0, 1.0},
@@ -271,7 +271,7 @@ TEST(MatrixOperationsTest, Can_Take_Determinant_With_Zero_Diag) {
 TEST(MatrixOperationsTest, Can_Transpose_Matrix) {
     // Arrange
     constexpr double threshold{0.001};
-    constexpr size_t size{4U};
+    constexpr int size{4U};
     constexpr double scalar{1.5};
     std::vector<std::vector<double>> data{{0.1,   0.2,  0.3,  0.4},
                                           {1.4,   1.3,  1.2,  1.1},
@@ -296,7 +296,7 @@ TEST(MatrixOperationsTest, Can_Transpose_Matrix) {
 TEST(MatrixOperationsTest, Can_Take_Inverse_Matrix) {
     // Arrange
     constexpr double threshold{0.001};
-    constexpr size_t size{3U};
+    constexpr int size{3U};
     std::vector<std::vector<double>> data{{-1.0,  2.0, -2.0},
                                           { 2.0, -1.0,  5.0},
                                           { 3.0, -2.0,  4.0}};
@@ -315,7 +315,7 @@ TEST(MatrixOperationsTest, Can_Take_Inverse_Matrix) {
 
 TEST(ComplexNumberTest, Matrices_Is_Equal_To_Itself) {
     // Arrange
-    constexpr size_t size{4U};
+    constexpr int size{4U};
     std::vector<std::vector<double>> data{{0.1,   0.2,  0.3,  0.4},
                                           {1.4,   1.3,  1.2,  1.1},
                                           {1.0,   2.0,  3.0,  4.0},
@@ -328,7 +328,7 @@ TEST(ComplexNumberTest, Matrices_Is_Equal_To_Itself) {
 
 TEST(ComplexNumberTest, Equal_Matrices_Are_Equal) {
     // Arrange
-    constexpr size_t size{4U};
+    constexpr int size{4U};
     std::vector<std::vector<double>> dataA{{0.1,   0.2,  0.3,  0.4},
                                            {1.4,   1.3,  1.2,  1.1},
                                            {1.0,   2.0,  3.0,  4.0},
@@ -347,7 +347,7 @@ TEST(ComplexNumberTest, Equal_Matrices_Are_Equal) {
 
 TEST(ComplexNumberTest, Different_Matrices_Not_Equal) {
     // Arrange
-    constexpr size_t size{4U};
+    constexpr int size{4U};
     std::vector<std::vector<double>> dataA{{0.1,   0.2,  0.3,  0.4},
                                            {1.4,   1.3,  1.2,  1.1},
                                            {1.0,   2.0,  3.0,  4.0},
