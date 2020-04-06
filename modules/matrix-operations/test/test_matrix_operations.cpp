@@ -12,8 +12,8 @@ ASSERT_EQ(matrixA.getData().size(), matrixB.getData().size()); \
 ASSERT_EQ(matrixA.getData()[0U].size(), matrixB.getData()[0U].size()); \
 for (int idx{0U}; idx < matrixA.getRows(); ++idx) { \
     for (int jdx{0U}; jdx < matrixA.getCols(); ++jdx) { \
-        ASSERT_NEAR(matrixA.getData()[idx][jdx],\
-                    matrixB.getData()[idx][jdx],\
+        ASSERT_NEAR(matrixA.getData()[idx][jdx], \
+                    matrixB.getData()[idx][jdx], \
                     threshold); \
     }\
 }
@@ -21,8 +21,8 @@ for (int idx{0U}; idx < matrixA.getRows(); ++idx) { \
 TEST(MatrixOperationsTest, Can_Create_Empty_Matrix) {
     // Arrange
     constexpr double threshold{0.001};
-    int rows{26U};
-    int cols{12U};
+    constexpr int rows{26U};
+    constexpr int cols{12U};
 
     // Act
     Matrix matrix(rows, cols);
@@ -308,7 +308,20 @@ TEST(MatrixOperationsTest, Can_Take_Inverse_Matrix) {
     ASSERT_NEAR_MATRIX(result, goldResult, threshold);
 }
 
-TEST(ComplexNumberTest, Matrices_Is_Equal_To_Itself) {
+TEST(MatrixOperationsTest, Can_Not_Take_Inverse_Matrix) {
+    // Arrange
+    constexpr double threshold{0.001};
+    constexpr int size{3U};
+    std::vector<std::vector<double>> data{{ 0.0,  2.0, -2.0},
+                                          { 0.0, -1.0,  5.0},
+                                          { 0.0, -2.0,  4.0}};
+    Matrix matrix(size, size, data);
+
+    // Act & Assert
+    ASSERT_ANY_THROW(matrix.takeInverseMatrix());
+}
+
+TEST(MatrixOperationsTest, Matrices_Is_Equal_To_Itself) {
     // Arrange
     constexpr int size{4U};
     std::vector<std::vector<double>> data{{0.1,   0.2,  0.3,  0.4},
@@ -321,7 +334,7 @@ TEST(ComplexNumberTest, Matrices_Is_Equal_To_Itself) {
     EXPECT_TRUE(matrix == matrix);
 }
 
-TEST(ComplexNumberTest, Equal_Matrices_Are_Equal) {
+TEST(MatrixOperationsTest, Equal_Matrices_Are_Equal) {
     // Arrange
     constexpr int size{4U};
     std::vector<std::vector<double>> dataA{{0.1,   0.2,  0.3,  0.4},
@@ -340,7 +353,7 @@ TEST(ComplexNumberTest, Equal_Matrices_Are_Equal) {
     EXPECT_EQ(matrixA, matrixB);
 }
 
-TEST(ComplexNumberTest, Different_Matrices_Not_Equal) {
+TEST(MatrixOperationsTest, Different_Matrices_Not_Equal) {
     // Arrange
     constexpr int size{4U};
     std::vector<std::vector<double>> dataA{{0.1,   0.2,  0.3,  0.4},
