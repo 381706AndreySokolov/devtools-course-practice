@@ -1,6 +1,7 @@
 // Copyright 2020 Sokolov Andrey
 
 #include <gtest/gtest.h>
+#include <vector>
 
 #include "include/matrix_operations.h"
 
@@ -11,7 +12,9 @@ ASSERT_EQ(matrixA.getData().size(), matrixB.getData().size()); \
 ASSERT_EQ(matrixA.getData()[0U].size(), matrixB.getData()[0U].size()); \
 for (int idx{0U}; idx < matrixA.getRows(); ++idx) { \
     for (int jdx{0U}; jdx < matrixA.getCols(); ++jdx) { \
-        ASSERT_NEAR(matrixA.getData()[idx][jdx], matrixB.getData()[idx][jdx], threshold); \
+        ASSERT_NEAR(matrixA.getData()[idx][jdx],\
+                    matrixB.getData()[idx][jdx],\
+                    threshold); \
     }\
 }
 
@@ -182,27 +185,19 @@ TEST(MatrixOperationsTest, Can_Matrix_Scalar_Multiplication) {
 TEST(MatrixOperationsTest, Can_Matrices_Multiplication) {
     // Arrange
     constexpr double threshold{0.001};
-    constexpr int size{6U};
-    std::vector<std::vector<double>> dataA{{ 1.1, 0.0, 0.0, 0.0, 2.2, 0.0 },
-                                           { 0.0, 0.0, 3.3, 4.4, 0.0, 0.0 },
-                                           { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                                           { 0.0, 0.0, 0.0, 8.8, 0.0, 5.5 },
-                                           { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                                           { 0.0, 7.7, 1.1, 0.0, 0.0, 6.6 }};
+    constexpr int size{3U};
 
-    std::vector<std::vector<double>> dataB{{ 1.1, 0.0, 0.0, 0.0, 2.2, 0.0 },
-                                           { 0.0, 0.0, 3.3, 4.4, 0.0, 0.0 },
-                                           { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                                           { 0.0, 0.0, 0.0, 8.8, 0.0, 5.5 },
-                                           { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 },
-                                           { 0.0, 7.7, 1.1, 0.0, 0.0, 6.6 }};
+    std::vector<std::vector<double>> dataA{{ 1.0, 4.0, 3.0},
+                                           { 2.0, 1.0, 5.0},
+                                           { 3.0, 2.0, 1.0}};
 
-    std::vector<std::vector<double>> goldData{{ 1.21, 0.0,   0.0,   0.0,   2.42, 0.0   },
-                                              { 0.0,  0.0,   0.0,   38.72, 0.0,  24.2  },
-                                              { 0.0,  0.0,   0.0,   0.0,   0.0,  0.0   },
-                                              { 0.0,  42.35, 6.05,  77.44, 0.0,  84.7  },
-                                              { 0.0,  0.0,   0.0,   0.0,   0.0,  0.0   },
-                                              { 0.0,  50.82, 32.67, 33.88, 0.0,  43.56 }};
+    std::vector<std::vector<double>> dataB{{ 5.0, 2.0, 1.0},
+                                           { 4.0, 3.0, 2.0},
+                                           { 2.0, 1.0, 5.0}};
+
+    std::vector<std::vector<double>> goldData{{ 27.0, 17.0, 24.0},
+                                              { 24.0, 12.0, 29.0},
+                                              { 25.0, 13.0, 12.0}};
 
     Matrix matrixA(size, size, dataA);
     Matrix matrixB(size, size, dataB);
@@ -301,9 +296,9 @@ TEST(MatrixOperationsTest, Can_Take_Inverse_Matrix) {
                                           { 2.0, -1.0,  5.0},
                                           { 3.0, -2.0,  4.0}};
     Matrix matrix(size, size, data);
-    std::vector<std::vector<double>> goldData{{ 0.6,-0.4,  0.8},
-                                              { 0.7, 0.2,  0.1},
-                                              {-0.1, 0.4, -0.3}};
+    std::vector<std::vector<double>> goldData{{ 0.6, -0.4,  0.8},
+                                              { 0.7,  0.2,  0.1},
+                                              {-0.1,  0.4, -0.3}};
     Matrix goldResult(size, size, goldData);
 
     // Act
