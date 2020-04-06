@@ -1,6 +1,7 @@
 // Copyright 2020 Sokolov Andrey
 
 #include <gtest/gtest.h>
+
 #include <vector>
 
 #include "include/matrix_operations.h"
@@ -52,8 +53,8 @@ TEST(MatrixOperationsTest, Can_Set_Rows) {
     std::vector<std::vector<double>> data{{2.2, 1.2, 45.2, 7.1},
                                           {9.1, 2.3, 12.1, 2.3},
                                           {12.3, 4.5, 6.1, 7.9}};
-    Matrix matrix(3, 4, data);
-    constexpr int newRows{2};
+    Matrix matrix(3U, 4U, data);
+    constexpr int newRows{2U};
 
     // Act
     matrix.setRows(newRows);
