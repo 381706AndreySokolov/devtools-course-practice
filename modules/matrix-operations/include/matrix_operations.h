@@ -32,7 +32,7 @@ class Matrix {
 
     double determinant();
     Matrix transpose();
-    //Matrix takeInverseMatrix();
+    Matrix takeInverseMatrix();
 
  private:
     int rows;
