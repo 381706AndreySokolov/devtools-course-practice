@@ -6,29 +6,11 @@
 
 class Matrix {
  public:
-    //Matrix(const int _rows, const int _cols);
-    //Matrix(const int _rows,
-    //       const int _cols,
-    //       std::vector<std::vector<double>> _data);
-    //Matrix(const Matrix& _matrix);
-
-     Matrix(const int _rows,
-         const int _cols) : rows(_rows),
-         cols(_cols),
-         data(_rows,
-             std::vector<double>(_cols, 0.0)) {};
-
-     Matrix(const int                              _rows,
-         const int                              _cols,
-         const std::vector<std::vector<double>> _data) : rows(_rows),
-         cols(_cols),
-         data(_data) {};
-
-     Matrix(const Matrix& _matrix) : rows(_matrix.rows),
-         cols(_matrix.cols),
-         data(_matrix.data) {};
-
-    Matrix& operator=(const Matrix& _matrix);
+    Matrix(const int _rows, const int _cols);
+    Matrix(const int _rows,
+           const int _cols,
+           std::vector<std::vector<double>> _data);
+    Matrix(const Matrix& _matrix);
 
     int getRows() const;
     int getCols() const;
@@ -42,6 +24,8 @@ class Matrix {
     Matrix operator- (const Matrix& _matrix) const;
     Matrix operator* (const double& _scalar) const;
     Matrix operator* (const Matrix& _matrix) const;
+
+    Matrix& operator= (const Matrix& _matrix);
 
     bool operator== (const Matrix& _matrix) const;
     bool operator!= (const Matrix& _matrix) const;

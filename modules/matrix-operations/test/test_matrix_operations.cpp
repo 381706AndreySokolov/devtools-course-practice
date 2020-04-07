@@ -57,7 +57,7 @@ TEST(MatrixOperationsTest, Can_Create_Via_Copying) {
     Matrix matrix(3, 4, data);
 
     // Act
-    Matrix copyMatrix{matrix};
+    Matrix copyMatrix(matrix);
 
     // Assert
     EXPECT_EQ(copyMatrix, matrix);
