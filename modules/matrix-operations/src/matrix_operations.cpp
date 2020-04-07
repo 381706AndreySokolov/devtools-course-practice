@@ -159,13 +159,13 @@ Matrix Matrix::takeInverseMatrix() {
 
     Matrix A(size, size, data);
     Matrix A0(size, size, data);
-    Matrix E2(size, size);
-    for (int idx{0}; idx < size; idx++) {
-        E2.data[idx][idx] = 2;
-    }
+    //Matrix E2(size, size);
+    //for (int idx{0}; idx < size; idx++) {
+    //    E2.data[idx][idx] = 2;
+    //}
 
-    double N1{0.0};
-    double Ninf{0.0};
+    //double N1{0.0};
+    //double Ninf{0.0};
     //for (int row{0}; row < size; ++row) {
     //    double colsum{0.0};
     //    double rowsum{0.0};
@@ -177,17 +177,17 @@ Matrix Matrix::takeInverseMatrix() {
     //    Ninf = std::max(rowsum, Ninf);
     //}
 
-    A0 = A0.transpose();
-    A0 = A0 * (1 / (N1 * Ninf));
+    //A0 = A0.transpose();
+    //A0 = A0 * (1 / (N1 * Ninf));
 
     Matrix inv{A0};
-    while (fabs((A * inv).determinant() - 1) >= 0.001) {
-        Matrix prev{inv};
-        inv = A * prev;
-        inv = inv * -1;
-        inv = inv + E2;
-        inv = prev * inv;
-    }
+    //while (fabs((A * inv).determinant() - 1) >= 0.001) {
+    //    Matrix prev{inv};
+    //    inv = A * prev;
+    //    inv = inv * -1;
+    //    inv = inv + E2;
+    //    inv = prev * inv;
+    //}
 
     return inv;
 }
