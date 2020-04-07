@@ -122,33 +122,33 @@ bool Matrix::operator!= (const Matrix& _matrix) const {
     return !(*this == _matrix);
 }
 
-double Matrix::determinant() {
-    double sum12{0.0};
-    double sum22{0.0};
-    for (int idx{0}; idx < rows; idx++) {
-        double sum11 = 1.0;
-        double sum21 = 1.0;
-        int l = 2 * rows - 1 - idx;
-        for (int jdx{0}; jdx < rows; jdx++) {
-            sum21 *= data[jdx][l-- % rows];
-            sum11 *= data[jdx][(jdx + idx) % (rows)];
-        }
-        sum22 += sum21;
-        sum12 += sum11;
-    }
-    return sum12 - sum22;
-}
-
-Matrix Matrix::transpose() {
-    Matrix result(rows, cols, data);
-
-    for (int idx{0}; idx < getRows()-1; ++idx) {
-        for (int jdx{idx + 1}; jdx < getCols(); ++jdx) {
-            std::swap(result.data[jdx][idx], result.data[idx][jdx]);
-        }
-    }
-    return result;
-}
+//double Matrix::determinant() {
+//    double sum12{0.0};
+//    double sum22{0.0};
+//    for (int idx{0}; idx < rows; idx++) {
+//        double sum11 = 1.0;
+//        double sum21 = 1.0;
+//        int l = 2 * rows - 1 - idx;
+//        for (int jdx{0}; jdx < rows; jdx++) {
+//            sum21 *= data[jdx][l-- % rows];
+//            sum11 *= data[jdx][(jdx + idx) % (rows)];
+//        }
+//        sum22 += sum21;
+//        sum12 += sum11;
+//    }
+//    return sum12 - sum22;
+//}
+//
+//Matrix Matrix::transpose() {
+//    Matrix result(rows, cols, data);
+//
+//    for (int idx{0}; idx < getRows()-1; ++idx) {
+//        for (int jdx{idx + 1}; jdx < getCols(); ++jdx) {
+//            std::swap(result.data[jdx][idx], result.data[idx][jdx]);
+//        }
+//    }
+//    return result;
+//}
 
 //Matrix Matrix::takeInverseMatrix() {
 //    if (this->determinant() == 0) {
