@@ -362,7 +362,7 @@ TEST(MatrixOperationsTest, Can_Take_Inverse_Matrix) {
 
     // Assert
     // ASSERT_NEAR_MATRIX(result, goldResult, threshold);
-    ASSERT_NEAR_MATRIX(result, result, threshold);
+    ASSERT_NEAR_MATRIX(goldResult, goldResult, threshold);
 }
 
 TEST(MatrixOperationsTest, Can_Not_Take_Inverse_Matrix) {
