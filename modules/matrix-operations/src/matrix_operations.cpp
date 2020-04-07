@@ -125,8 +125,10 @@ bool Matrix::operator!= (const Matrix& _matrix) const {
 }
 
 double Matrix::determinant() {
-    double sum12{0.0};
-    double sum22{0.0};
+    double sum12;
+    double sum22;
+    sum12 = 0.0;
+    sum22 = 0.0;
     for (int idx{0}; idx < rows; idx++) {
         double sum11 = 1.0;
         double sum21 = 1.0;
@@ -166,8 +168,10 @@ Matrix Matrix::takeInverseMatrix() {
         E2.data[idx][idx] = 2;
     }
 
-    double N1{0.0};
-    double Ninf{0.0};
+    double N1;
+    double Ninf;
+    N1   = 0.0;
+    Ninf = 0.0;
     for (int row{0}; row < size; ++row) {
         double colsum{0.0};
         double rowsum{0.0};
