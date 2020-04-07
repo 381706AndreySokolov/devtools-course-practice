@@ -358,7 +358,7 @@ TEST(MatrixOperationsTest, Can_Take_Inverse_Matrix) {
     Matrix goldResult(size, size, goldData);
 
     // Act
-    Matrix result{matrix.takeInverseMatrix()};
+    Matrix result{takeInverseMatrix(matrix)};
 
     // Assert
     ASSERT_NEAR_MATRIX(result, goldResult, threshold);
@@ -374,7 +374,7 @@ TEST(MatrixOperationsTest, Can_Not_Take_Inverse_Matrix) {
     Matrix matrix(size, size, data);
 
     // Act & Assert
-    ASSERT_ANY_THROW(matrix.takeInverseMatrix());
+    ASSERT_ANY_THROW(takeInverseMatrix(matrix));
 }
 
 TEST(MatrixOperationsTest, Matrices_Is_Equal_To_Itself) {

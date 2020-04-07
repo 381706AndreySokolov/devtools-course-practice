@@ -32,11 +32,13 @@ class Matrix {
 
     double determinant();
     Matrix transpose();
-    Matrix takeInverseMatrix();
+    // Matrix takeInverseMatrix();
  private:
     int rows;
     int cols;
     std::vector<std::vector<double>> data;
 };
+
+Matrix takeInverseMatrix(Matrix& _matrix);
 
 #endif  // MODULES_MATRIX_OPERATIONS_INCLUDE_MATRIX_OPERATIONS_H_
