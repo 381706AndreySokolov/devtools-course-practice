@@ -8,7 +8,7 @@ Matrix::Matrix() : rows(0), cols(0), data() {}
 Matrix::Matrix(const int _rows,
                const int _cols) : rows(_rows),
                                   cols(_cols),
-                                  data(_rows, \
+                                  data(_rows,
                                        std::vector<double>(_cols, 0.0)) {}
 
 Matrix::Matrix(const int                              _rows,
@@ -130,22 +130,19 @@ bool Matrix::operator!= (const Matrix& _matrix) const {
 }
 
 double Matrix::determinant() {
-    double result{0.0};
-    int l;
-    double sum11{1.0}, sum12{0.0}, sum21{1.0}, sum22{0.0};
-
-    for (int i = 0; i < rows; i++) {
-        sum11 = 1.0; l = 2 * rows - 1 - i; sum21 = 1.0;
-        for (int j = 0; j < rows; j++) {
-            sum21 *= data[j][l % rows];
-            l--;
-            sum11 *= data[j][(j + i) % (rows)];
+    double sum12{0.0}, sum22{0.0};
+    for (int idx{0}; idx < rows; idx++) {
+        double sum11 = 1.0;
+        double sum21 = 1.0;
+        int l = 2 * rows - 1 - idx;
+        for (int jdx{0}; jdx < rows; jdx++) {
+            sum21 *= data[jdx][l-- % rows];
+            sum11 *= data[jdx][(jdx + idx) % (rows)];
         }
         sum22 += sum21;
         sum12 += sum11;
     }
-    result = sum12 - sum22;
-    return result;
+    return sum12 - sum22;
 }
 
 Matrix Matrix::transpose() {
