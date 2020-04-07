@@ -151,9 +151,9 @@ Matrix Matrix::transpose() {
 }
 
 Matrix Matrix::takeInverseMatrix() {
-    //if (this->determinant() == 0) {
-    //    throw "Determinant are equal zero";
-    //}
+    if (this->determinant() == 0) {
+        throw "Determinant are equal zero";
+    }
 
     int size{rows};
 
@@ -181,13 +181,13 @@ Matrix Matrix::takeInverseMatrix() {
     A0 = A0 * (1 / (N1 * Ninf));
 
     Matrix inv{A0};
-    while (fabs((A * inv).determinant() - 1) >= 0.001) {
-        Matrix prev{inv};
-        inv = A * prev;
-        inv = inv * -1;
-        inv = inv + E2;
-        inv = prev * inv;
-    }
+    //while (fabs((A * inv).determinant() - 1) >= 0.001) {
+    //    Matrix prev{inv};
+    //    inv = A * prev;
+    //    inv = inv * -1;
+    //    inv = inv + E2;
+    //    inv = prev * inv;
+    //}
 
     return inv;
 }
