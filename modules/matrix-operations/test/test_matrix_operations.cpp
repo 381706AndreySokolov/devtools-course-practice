@@ -226,6 +226,31 @@ TEST(MatrixOperationsTest, Can_Matrices_Multiplication) {
     ASSERT_NEAR_MATRIX(result, goldResult, threshold);
 }
 
+TEST(MatrixOperationsTest, Can_Matrices_Multiplication_With_Diff_Size) {
+    // Arrange
+    constexpr double threshold{0.001};
+
+    std::vector<std::vector<double>> dataA{{ 1.0, 4.0, 3.0},
+                                           { 2.0, 1.0, 5.0}};
+
+    std::vector<std::vector<double>> dataB{{ 5.0, 2.0},
+                                           { 4.0, 3.0},
+                                           { 2.0, 1.0}};
+
+    std::vector<std::vector<double>> goldData{{27.0, 17.0},
+                                              {24.0, 12.0}};
+
+    Matrix matrixA(2, 3, dataA);
+    Matrix matrixB(3, 2, dataB);
+
+    // Act
+    Matrix result = matrixA * matrixB;
+
+    // Assert
+    Matrix goldResult(2, 2, goldData);
+    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
+}
+
 TEST(MatrixOperationsTest, Can_Take_Determinant) {
     // Arrange
     constexpr double threshold{0.001};

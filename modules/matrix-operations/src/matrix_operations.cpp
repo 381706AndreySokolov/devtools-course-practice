@@ -23,7 +23,6 @@ Matrix& Matrix::operator=(const Matrix& _matrix) {
     rows = _matrix.getRows();
     cols = _matrix.getCols();
     data = _matrix.getData();
-
     return *this;
 }
 
@@ -91,7 +90,7 @@ Matrix Matrix::operator*(const double& _scalar) const {
 }
 
 Matrix Matrix::operator*(const Matrix& _matrix) const {
-    Matrix res(rows, cols);
+    Matrix res(rows, _matrix.cols);
 
     for (int idx{0}; idx < rows; ++idx) {
         for (int jdx{0}; jdx < _matrix.cols; ++jdx) {
@@ -165,10 +164,12 @@ Matrix Matrix::takeInverseMatrix() {
         E2.data[idx][idx] = 2;
     }
 
-    double N1 = 0, Ninf = 0;
-    for (int row = 0; row < size; row++) {
-        double colsum = 0, rowsum = 0;
-        for (int col = 0; col < size; col++) {
+    double N1{0.0};
+    double Ninf{0.0};
+    for (int row{0}; row < size; ++row) {
+        double colsum{0.0};
+        double rowsum{0.0};
+        for (int col{0}; col < size; ++col) {
             rowsum += fabs(A0.data[row][col]);
             colsum += fabs(A0.data[col][row]);
         }

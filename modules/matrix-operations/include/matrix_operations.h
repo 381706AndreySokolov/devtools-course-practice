@@ -10,7 +10,7 @@ class Matrix {
     Matrix(const int _rows,
            const int _cols,
            std::vector<std::vector<double>> _data);
-    Matrix(const Matrix& matrix);
+    Matrix(const Matrix& _matrix);
 
     Matrix& operator=(const Matrix& _matrix);
 
