@@ -313,34 +313,23 @@ TEST(MatrixOperationsTest, Can_Transpose_Matrix) {
     ASSERT_NEAR_MATRIX(result, goldResult, 0.001);
 }
 
-//TEST(MatrixOperationsTest, Can_Take_Inverse_Matrix) {
-//    // Arrange
-//    std::vector<std::vector<double>> data{{-1.0,  2.0, -2.0},
-//                                          { 2.0, -1.0,  5.0},
-//                                          { 3.0, -2.0,  4.0}};
-//    Matrix matrix(3, 3, data);
-//    std::vector<std::vector<double>> goldData{{ 0.6, -0.4,  0.8},
-//                                              { 0.7,  0.2,  0.1},
-//                                              {-0.1,  0.4, -0.3}};
-//    Matrix goldResult(3, 3, goldData);
-//
-//    // Act
-//    Matrix result = matrix.takeInverseMatrix();
-//
-//    // Assert
-//    ASSERT_NEAR_MATRIX(result, goldResult, 0.001);
-//}
-//
-//TEST(MatrixOperationsTest, Can_Not_Take_Inverse_Matrix) {
-//    // Arrange
-//    std::vector<std::vector<double>> data{{ 0.0,  2.0, -2.0},
-//                                          { 0.0, -1.0,  5.0},
-//                                          { 0.0, -2.0,  4.0}};
-//    Matrix matrix(3, 3, data);
-//
-//    // Act & Assert
-//    ASSERT_ANY_THROW(matrix.takeInverseMatrix());
-//}
+TEST(MatrixOperationsTest, Can_Take_Inverse_Matrix) {
+    // Arrange
+    std::vector<std::vector<double>> data{{-1.0,  2.0, -2.0},
+                                          { 2.0, -1.0,  5.0},
+                                          { 3.0, -2.0,  4.0}};
+    Matrix matrix(3, 3, data);
+    std::vector<std::vector<double>> goldData{{ 0.6, -0.4,  0.8},
+                                              { 0.7,  0.2,  0.1},
+                                              {-0.1,  0.4, -0.3}};
+    Matrix goldResult(3, 3, goldData);
+
+    // Act
+    Matrix result = matrix.takeInverseMatrix();
+
+    // Assert
+    ASSERT_NEAR_MATRIX(result, goldResult, 0.001);
+}
 
 TEST(MatrixOperationsTest, Matrices_Is_Equal_To_Itself) {
     // Arrange

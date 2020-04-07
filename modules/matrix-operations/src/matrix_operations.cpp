@@ -154,48 +154,44 @@ Matrix Matrix::transpose() {
     return result;
 }
 
-//Matrix Matrix::takeInverseMatrix() {
-//    if (this->determinant() == 0) {
-//        throw "Determinant are equal zero";
-//    }
-//
-//    int size{rows};
-//
-//    Matrix A(size, size, data);
-//    Matrix A0(size, size, data);
-//    Matrix E2(size, size);
-//    for (int idx{0}; idx < size; idx++) {
-//        E2.data[idx][idx] = 2;
-//    }
-//
-//    double N1;
-//    double Ninf;
-//    N1   = 0.0;
-//    Ninf = 0.0;
-//    for (int row{0}; row < size; ++row) {
-//        double colsum;
-//        double rowsum;
-//        colsum = 0.0;
-//        rowsum = 0.0;
-//        for (int col{0}; col < size; ++col) {
-//            rowsum += fabs(A0.data[row][col]);
-//            colsum += fabs(A0.data[col][row]);
-//        }
-//        N1 = std::max(colsum, N1);
-//        Ninf = std::max(rowsum, Ninf);
-//    }
-//
-//    A0 = A0.transpose();
-//    A0 = A0 * (1 / (N1 * Ninf));
-//
-//    Matrix inv{A0};
-//    while (fabs((A * inv).determinant() - 1) >= 0.001) {
-//        Matrix prev{inv};
-//        inv = A * prev;
-//        inv = inv * -1;
-//        inv = inv + E2;
-//        inv = prev * inv;
-//    }
-//
-//    return inv;
-//}
+Matrix Matrix::takeInverseMatrix() {
+    int size{rows};
+
+    Matrix A(size, size, data);
+    Matrix A0(size, size, data);
+    Matrix E2(size, size);
+    for (int idx{0}; idx < size; idx++) {
+        E2.data[idx][idx] = 2;
+    }
+
+    double N1;
+    double Ninf;
+    N1   = 0.0;
+    Ninf = 0.0;
+    for (int row{0}; row < size; ++row) {
+        double colsum;
+        double rowsum;
+        colsum = 0.0;
+        rowsum = 0.0;
+        for (int col{0}; col < size; ++col) {
+            rowsum += fabs(A0.data[row][col]);
+            colsum += fabs(A0.data[col][row]);
+        }
+        N1 = std::max(colsum, N1);
+        Ninf = std::max(rowsum, Ninf);
+    }
+
+    A0 = A0.transpose();
+    A0 = A0 * (1 / (N1 * Ninf));
+
+    Matrix inv{A0};
+    while (fabs((A * inv).determinant() - 1) >= 0.001) {
+        Matrix prev{inv};
+        inv = A * prev;
+        inv = inv * -1;
+        inv = inv + E2;
+        inv = prev * inv;
+    }
+
+    return inv;
+}
