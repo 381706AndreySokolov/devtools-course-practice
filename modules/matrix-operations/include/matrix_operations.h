@@ -12,7 +12,7 @@ class Matrix {
            std::vector<std::vector<double>> _data);
     Matrix(const Matrix& matrix);
 
-    Matrix& operator=(const Matrix& z);
+    Matrix& operator=(const Matrix& _matrix);
 
     int getRows() const;
     int getCols() const;
@@ -28,7 +28,7 @@ class Matrix {
     Matrix operator* (const Matrix& _matrix) const;
 
     bool operator== (const Matrix& _matrix) const;
-    bool operator!= (const Matrix& z) const;
+    bool operator!= (const Matrix& _matrix) const;
 
     double determinant();
     Matrix transpose();
