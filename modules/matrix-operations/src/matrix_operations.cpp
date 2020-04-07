@@ -166,12 +166,11 @@ Matrix Matrix::takeInverseMatrix() {
     }
 
     int size{rows};
-    constexpr double threshold{0.001};
 
     Matrix A(rows, cols, data);
     Matrix A0(rows, cols, data);
     Matrix E2(size, size);
-    for (int idx{ 0 }; idx < size; idx++) {
+    for (int idx{0}; idx < size; idx++) {
         E2.data[idx][idx] = 2;
     }
 
@@ -190,7 +189,7 @@ Matrix Matrix::takeInverseMatrix() {
     A0 = A0 * (1 / (N1 * Ninf));
 
     Matrix inv{A0};
-    while (fabs((A * inv).determinant() - 1) >= threshold) {
+    while (fabs((A * inv).determinant() - 1) >= 0.001) {
         Matrix prev{inv};
         inv = A * prev;
         inv = inv * -1;
