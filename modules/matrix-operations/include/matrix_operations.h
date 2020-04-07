@@ -22,17 +22,17 @@ class Matrix {
     void setCols(const int _cols);
     void setData(std::vector<std::vector<double>> _data);
 
-    //Matrix operator+ (const Matrix& _matrix) const;
-    //Matrix operator- (const Matrix& _matrix) const;
-    //Matrix operator* (const double& _scalar) const;
-    //Matrix operator* (const Matrix& _matrix) const;
+    Matrix operator+ (const Matrix& _matrix) const;
+    Matrix operator- (const Matrix& _matrix) const;
+    Matrix operator* (const double& _scalar) const;
+    Matrix operator* (const Matrix& _matrix) const;
 
     bool operator== (const Matrix& _matrix) const;
     bool operator!= (const Matrix& _matrix) const;
 
-    // double determinant();
-    // Matrix transpose();
-    // Matrix takeInverseMatrix();
+     double determinant();
+     Matrix transpose();
+     Matrix takeInverseMatrix();
 
  private:
     int rows;
