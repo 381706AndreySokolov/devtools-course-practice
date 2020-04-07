@@ -366,7 +366,26 @@ TEST(MatrixOperationsTest, Equal_Matrices_Are_Equal) {
     Matrix matrixB(size, size, dataB);
 
     // Act & Assert
-    EXPECT_EQ(matrixA, matrixB);
+    EXPECT_TRUE(matrixA == matrixB);
+}
+
+TEST(MatrixOperationsTest, Equal_Matrices_Are_Not_Equal) {
+    // Arrange
+    constexpr int size{4};
+    std::vector<std::vector<double>> dataA{{0.1,   0.2,  0.3,  0.4},
+                                           {1.4,   1.3,  1.2,  1.1},
+                                           {1.0,   3.0,  3.0,  4.0},
+                                           {11.1, 11.2, 11.3, 11.4} };
+
+    std::vector<std::vector<double>> dataB{{0.1,   0.2,  0.3,  0.4},
+                                           {1.4,   1.3,  1.2,  1.1},
+                                           {1.0,   2.0,  3.0,  4.0},
+                                           {11.1, 11.2, 11.3, 11.4} };
+    Matrix matrixA(size, size, dataA);
+    Matrix matrixB(size, size, dataB);
+
+    // Act & Assert
+    EXPECT_FALSE(matrixA == matrixB);
 }
 
 TEST(MatrixOperationsTest, Different_Matrices_Not_Eqal) {

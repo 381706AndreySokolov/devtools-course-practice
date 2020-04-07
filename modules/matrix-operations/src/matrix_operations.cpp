@@ -3,8 +3,6 @@
 #include <algorithm>
 #include "include/matrix_operations.h"
 
-Matrix::Matrix() : rows(0), cols(0), data() {}
-
 Matrix::Matrix(const int _rows,
                const int _cols) : rows(_rows),
                                   cols(_cols),
@@ -97,7 +95,6 @@ Matrix Matrix::operator*(const Matrix& _matrix) const {
 
     for (int idx{0}; idx < rows; ++idx) {
         for (int jdx{0}; jdx < _matrix.cols; ++jdx) {
-            res.data[idx][jdx] = 0;
             for (int kdx{0}; kdx < cols; ++kdx) {
                 res.data[idx][jdx] += data[idx][kdx] * _matrix.data[kdx][jdx];
             }
@@ -107,10 +104,8 @@ Matrix Matrix::operator*(const Matrix& _matrix) const {
 }
 
 bool Matrix::operator== (const Matrix& _matrix) const {
-    if (rows            != _matrix.rows ||
-        cols            != _matrix.cols ||
-        data.size()     != _matrix.data.size() ||
-        data[0U].size() != _matrix.data[0U].size()) {
+    if (rows != _matrix.rows ||
+        cols != _matrix.cols) {
         return false;
     }
 
@@ -163,8 +158,8 @@ Matrix Matrix::takeInverseMatrix() {
 
     int size{rows};
 
-    Matrix A(rows, cols, data);
-    Matrix A0(rows, cols, data);
+    Matrix A(size, size, data);
+    Matrix A0(size, size, data);
     Matrix E2(size, size);
     for (int idx{0}; idx < size; idx++) {
         E2.data[idx][idx] = 2;
