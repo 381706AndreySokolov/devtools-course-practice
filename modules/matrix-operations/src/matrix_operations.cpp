@@ -14,11 +14,11 @@ Matrix::Matrix(const int                              _rows,
                const int                              _cols,
                const std::vector<std::vector<double>> _data) : rows(_rows),
                                                                cols(_cols),
-                                                               data(_data) {};
+                                                               data(_data) {}
 
 Matrix::Matrix(const Matrix& _matrix) : rows(_matrix.rows),
                                         cols(_matrix.cols),
-                                        data(_matrix.data) {};
+                                        data(_matrix.data) {}
 
 
 Matrix& Matrix::operator=(const Matrix& _matrix) {
