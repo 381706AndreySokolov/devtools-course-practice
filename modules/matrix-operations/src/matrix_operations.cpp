@@ -101,26 +101,26 @@ void Matrix::setData(std::vector<std::vector<double>> _data) {
 //    }
 //    return res;
 //}
-//
-//bool Matrix::operator== (const Matrix& _matrix) const {
-//    if (rows != _matrix.rows ||
-//        cols != _matrix.cols) {
-//        return false;
-//    }
-//
-//    for (int idx{0}; idx < getRows(); ++idx) {
-//        for (int jdx{0}; jdx < getCols(); ++jdx) {
-//            if (data[idx][jdx] != _matrix.data[idx][jdx]) {
-//                return false;
-//            }
-//        }
-//    }
-//    return true;
-//}
-//
-//bool Matrix::operator!= (const Matrix& _matrix) const {
-//    return !(*this == _matrix);
-//}
+
+bool Matrix::operator== (const Matrix& _matrix) const {
+    if (rows != _matrix.rows ||
+        cols != _matrix.cols) {
+        return false;
+    }
+
+    for (int idx{0}; idx < getRows(); ++idx) {
+        for (int jdx{0}; jdx < getCols(); ++jdx) {
+            if (data[idx][jdx] != _matrix.data[idx][jdx]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool Matrix::operator!= (const Matrix& _matrix) const {
+    return !(*this == _matrix);
+}
 
 //double Matrix::determinant() {
 //    double sum12{0.0};

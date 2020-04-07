@@ -27,8 +27,8 @@ class Matrix {
     //Matrix operator* (const double& _scalar) const;
     //Matrix operator* (const Matrix& _matrix) const;
 
-    //bool operator== (const Matrix& _matrix) const;
-    //bool operator!= (const Matrix& _matrix) const;
+    bool operator== (const Matrix& _matrix) const;
+    bool operator!= (const Matrix& _matrix) const;
 
     // double determinant();
     // Matrix transpose();
