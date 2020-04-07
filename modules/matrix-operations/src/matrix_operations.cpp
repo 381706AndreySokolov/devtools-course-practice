@@ -107,14 +107,13 @@ Matrix Matrix::operator*(const Matrix& _matrix) const {
 }
 
 bool Matrix::operator== (const Matrix& _matrix) const {
-    if (rows != _matrix.rows) {
-        return false;
-    } else if (cols != _matrix.cols) {
-        return false;
-    } else if (data.size() != _matrix.data.size() ||
-               data[0U].size() != _matrix.data[0U].size()) {
+    if (rows            != _matrix.rows ||
+        cols            != _matrix.cols ||
+        data.size()     != _matrix.data.size() ||
+        data[0U].size() != _matrix.data[0U].size()) {
         return false;
     }
+
     for (int idx{0}; idx < getRows(); ++idx) {
         for (int jdx{0}; jdx < getCols(); ++jdx) {
             if (data[idx][jdx] != _matrix.data[idx][jdx]) {
@@ -158,10 +157,6 @@ Matrix Matrix::transpose() {
 }
 
 Matrix Matrix::takeInverseMatrix() {
-    if (rows != cols) {
-        throw "Rows are not equal cols";
-    }
-
     if (this->determinant() == 0) {
         throw "Determinant are equal zero";
     }
