@@ -56,71 +56,71 @@ void Matrix::setData(std::vector<std::vector<double>> _data) {
     cols = data[0U].size();
 }
 
-Matrix Matrix::operator+(const Matrix& _matrix) const {
-    Matrix result(rows, cols);
-
-    for (int idx{0}; idx < getRows(); ++idx) {
-        for (int jdx{0}; jdx < getCols(); ++jdx) {
-            result.data[idx][jdx] = data[idx][jdx] + _matrix.data[idx][jdx];
-        }
-    }
-    return result;
-}
-
-Matrix Matrix::operator-(const Matrix& _matrix) const {
-    Matrix result(rows, cols);
-
-    for (int idx{0}; idx < getRows(); ++idx) {
-        for (int jdx{0}; jdx < getCols(); ++jdx) {
-            result.data[idx][jdx] = data[idx][jdx] - _matrix.data[idx][jdx];
-        }
-    }
-    return result;
-}
-
-Matrix Matrix::operator*(const double& _scalar) const {
-    Matrix result(rows, cols, data);
-
-    for (int idx{0}; idx < rows; ++idx) {
-        for (int jdx{0}; jdx < cols; ++jdx) {
-            result.data[idx][jdx] *= _scalar;
-        }
-    }
-    return result;
-}
-
-Matrix Matrix::operator*(const Matrix& _matrix) const {
-    Matrix res(rows, _matrix.cols);
-
-    for (int idx{0}; idx < rows; ++idx) {
-        for (int jdx{0}; jdx < _matrix.cols; ++jdx) {
-            for (int kdx{0}; kdx < cols; ++kdx) {
-                res.data[idx][jdx] += data[idx][kdx] * _matrix.data[kdx][jdx];
-            }
-        }
-    }
-    return res;
-}
-
-bool Matrix::operator== (const Matrix& _matrix) const {
-    if (rows != _matrix.rows ||
-        cols != _matrix.cols) {
-        return false;
-    }
-
-    for (int idx{0}; idx < getRows(); ++idx) {
-        for (int jdx{0}; jdx < getCols(); ++jdx) {
-            if (data[idx][jdx] != _matrix.data[idx][jdx]) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-bool Matrix::operator!= (const Matrix& _matrix) const {
-    return !(*this == _matrix);
-}
+//Matrix Matrix::operator+(const Matrix& _matrix) const {
+//    Matrix result(rows, cols);
+//
+//    for (int idx{0}; idx < getRows(); ++idx) {
+//        for (int jdx{0}; jdx < getCols(); ++jdx) {
+//            result.data[idx][jdx] = data[idx][jdx] + _matrix.data[idx][jdx];
+//        }
+//    }
+//    return result;
+//}
+//
+//Matrix Matrix::operator-(const Matrix& _matrix) const {
+//    Matrix result(rows, cols);
+//
+//    for (int idx{0}; idx < getRows(); ++idx) {
+//        for (int jdx{0}; jdx < getCols(); ++jdx) {
+//            result.data[idx][jdx] = data[idx][jdx] - _matrix.data[idx][jdx];
+//        }
+//    }
+//    return result;
+//}
+//
+//Matrix Matrix::operator*(const double& _scalar) const {
+//    Matrix result(rows, cols, data);
+//
+//    for (int idx{0}; idx < rows; ++idx) {
+//        for (int jdx{0}; jdx < cols; ++jdx) {
+//            result.data[idx][jdx] *= _scalar;
+//        }
+//    }
+//    return result;
+//}
+//
+//Matrix Matrix::operator*(const Matrix& _matrix) const {
+//    Matrix res(rows, _matrix.cols);
+//
+//    for (int idx{0}; idx < rows; ++idx) {
+//        for (int jdx{0}; jdx < _matrix.cols; ++jdx) {
+//            for (int kdx{0}; kdx < cols; ++kdx) {
+//                res.data[idx][jdx] += data[idx][kdx] * _matrix.data[kdx][jdx];
+//            }
+//        }
+//    }
+//    return res;
+//}
+//
+//bool Matrix::operator== (const Matrix& _matrix) const {
+//    if (rows != _matrix.rows ||
+//        cols != _matrix.cols) {
+//        return false;
+//    }
+//
+//    for (int idx{0}; idx < getRows(); ++idx) {
+//        for (int jdx{0}; jdx < getCols(); ++jdx) {
+//            if (data[idx][jdx] != _matrix.data[idx][jdx]) {
+//                return false;
+//            }
+//        }
+//    }
+//    return true;
+//}
+//
+//bool Matrix::operator!= (const Matrix& _matrix) const {
+//    return !(*this == _matrix);
+//}
 
 //double Matrix::determinant() {
 //    double sum12{0.0};

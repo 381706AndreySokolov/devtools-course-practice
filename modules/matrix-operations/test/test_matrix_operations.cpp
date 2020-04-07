@@ -128,143 +128,143 @@ TEST(MatrixOperationsTest, Can_Assign_Matrix) {
     ASSERT_NEAR_MATRIX(copyMatrix, matrix, 0.001);
 }
 
-TEST(MatrixOperationsTest, Can_Add_Matrices) {
-    // Arrange
-    constexpr double threshold{0.001};
-    constexpr int size{4};
-    std::vector<std::vector<double>> dataA{{0.1,   0.2,  0.3,  0.4},
-                                           {1.4,   1.3,  1.2,  1.1},
-                                           {1.0,   2.0,  3.0,  4.0},
-                                           {11.1, 11.2, 11.3, 11.4}};
-
-    std::vector<std::vector<double>> dataB{{0.4,   0.3,  0.2,  0.1},
-                                           {1.1,   1.2,  1.3,  1.4},
-                                           {2.0,   2.0,  2.0,  2.0},
-                                           {10.1, 11.2, 12.3, 13.4}};
-
-    std::vector<std::vector<double>> goldData{{0.5,   0.5,  0.5,  0.5},
-                                              {2.5,   2.5,  2.5,  2.5},
-                                              {3.0,   4.0,  5.0,  6.0},
-                                              {21.2, 22.4, 23.6, 24.8}};
-
-    Matrix matrixA(size, size, dataA);
-    Matrix matrixB(size, size, dataB);
-
-    // Act
-    Matrix result = matrixA + matrixB;
-
-    // Assert
-    Matrix goldResult(size, size, goldData);
-    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
-}
-
-TEST(MatrixOperationsTest, Can_Difference_Matrices) {
-    // Arrange
-    constexpr double threshold{0.001};
-    constexpr int size{4};
-    std::vector<std::vector<double>> dataA{{0.1,   0.2,  0.3,  0.4},
-                                           {1.4,   1.3,  1.2,  1.1},
-                                           {1.0,   2.0,  3.0,  4.0},
-                                           {11.1, 11.2, 11.3, 11.4}};
-
-    std::vector<std::vector<double>> dataB{{0.4,   0.3,  0.2,  0.1},
-                                           {1.1,   1.2,  1.3,  1.4},
-                                           {2.0,   2.0,  2.0,  2.0},
-                                           {10.1, 11.2, 12.3, 13.4}};
-
-    std::vector<std::vector<double>> goldData{{-0.3, -0.1,  0.1,  0.3},
-                                              { 0.3,  0.1, -0.1, -0.3},
-                                              {-1.0,  0.0,  1.0,  2.0},
-                                              { 1.0,  0.0, -1.0, -2.0}};
-
-    Matrix matrixA(size, size, dataA);
-    Matrix matrixB(size, size, dataB);
-
-    // Act
-    Matrix result = matrixA - matrixB;
-
-    // Assert
-    Matrix goldResult(size, size, goldData);
-    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
-}
-
-TEST(MatrixOperationsTest, Can_Matrix_Scalar_Multiplication) {
-    // Arrange
-    constexpr double threshold{0.001};
-    constexpr int size{4};
-    constexpr double scalar{1.5};
-    std::vector<std::vector<double>> data{{0.1,   0.2,  0.3,  0.4},
-                                          {1.4,   1.3,  1.2,  1.1},
-                                          {1.0,   2.0,  3.0,  4.0},
-                                          {11.1, 11.2, 11.3, 11.4}};
-
-    std::vector<std::vector<double>> goldData{{0.15,   0.3,  0.45,  0.6},
-                                              { 2.1,  1.95,   1.8, 1.65},
-                                              { 1.5,   3.0,   4.5,  6.0},
-                                              {16.65, 16.8, 16.95, 17.1}};
-
-    Matrix matrix(size, size, data);
-
-    // Act
-    Matrix result = matrix * 1.5;
-
-    // Assert
-    Matrix goldResult(size, size, goldData);
-    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
-}
-
-TEST(MatrixOperationsTest, Can_Matrices_Multiplication) {
-    // Arrange
-    constexpr double threshold{0.001};
-    constexpr int size{3};
-
-    std::vector<std::vector<double>> dataA{{ 1.0, 4.0, 3.0},
-                                           { 2.0, 1.0, 5.0},
-                                           { 3.0, 2.0, 1.0}};
-
-    std::vector<std::vector<double>> dataB{{ 5.0, 2.0, 1.0},
-                                           { 4.0, 3.0, 2.0},
-                                           { 2.0, 1.0, 5.0}};
-
-    std::vector<std::vector<double>> goldData{{ 27.0, 17.0, 24.0},
-                                              { 24.0, 12.0, 29.0},
-                                              { 25.0, 13.0, 12.0}};
-
-    Matrix matrixA(size, size, dataA);
-    Matrix matrixB(size, size, dataB);
-
-    // Act
-    Matrix result = matrixA * matrixB;
-
-    // Assert
-    Matrix goldResult(size, size, goldData);
-    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
-}
-
-TEST(MatrixOperationsTest, Can_Matrices_Multiplication_With_Diff_Size) {
-    // Arrange
-    constexpr double threshold{0.001};
-
-    std::vector<std::vector<double>> dataA{{ 1.0, 4.0, 3.0},
-                                           { 2.0, 1.0, 5.0}};
-
-    std::vector<std::vector<double>> dataB{{ 5.0, 2.0},
-                                           { 4.0, 3.0},
-                                           { 2.0, 1.0}};
-
-    std::vector<std::vector<double>> goldData{{27.0, 17.0},
-                                              {24.0, 12.0}};
-
-    Matrix matrixA(2, 3, dataA);
-    Matrix matrixB(3, 2, dataB);
-
-    // Act
-    Matrix result = matrixA * matrixB;
-
-    // Assert
-    Matrix goldResult(2, 2, goldData);
-    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
-}
+//TEST(MatrixOperationsTest, Can_Add_Matrices) {
+//    // Arrange
+//    constexpr double threshold{0.001};
+//    constexpr int size{4};
+//    std::vector<std::vector<double>> dataA{{0.1,   0.2,  0.3,  0.4},
+//                                           {1.4,   1.3,  1.2,  1.1},
+//                                           {1.0,   2.0,  3.0,  4.0},
+//                                           {11.1, 11.2, 11.3, 11.4}};
+//
+//    std::vector<std::vector<double>> dataB{{0.4,   0.3,  0.2,  0.1},
+//                                           {1.1,   1.2,  1.3,  1.4},
+//                                           {2.0,   2.0,  2.0,  2.0},
+//                                           {10.1, 11.2, 12.3, 13.4}};
+//
+//    std::vector<std::vector<double>> goldData{{0.5,   0.5,  0.5,  0.5},
+//                                              {2.5,   2.5,  2.5,  2.5},
+//                                              {3.0,   4.0,  5.0,  6.0},
+//                                              {21.2, 22.4, 23.6, 24.8}};
+//
+//    Matrix matrixA(size, size, dataA);
+//    Matrix matrixB(size, size, dataB);
+//
+//    // Act
+//    Matrix result = matrixA + matrixB;
+//
+//    // Assert
+//    Matrix goldResult(size, size, goldData);
+//    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
+//}
+//
+//TEST(MatrixOperationsTest, Can_Difference_Matrices) {
+//    // Arrange
+//    constexpr double threshold{0.001};
+//    constexpr int size{4};
+//    std::vector<std::vector<double>> dataA{{0.1,   0.2,  0.3,  0.4},
+//                                           {1.4,   1.3,  1.2,  1.1},
+//                                           {1.0,   2.0,  3.0,  4.0},
+//                                           {11.1, 11.2, 11.3, 11.4}};
+//
+//    std::vector<std::vector<double>> dataB{{0.4,   0.3,  0.2,  0.1},
+//                                           {1.1,   1.2,  1.3,  1.4},
+//                                           {2.0,   2.0,  2.0,  2.0},
+//                                           {10.1, 11.2, 12.3, 13.4}};
+//
+//    std::vector<std::vector<double>> goldData{{-0.3, -0.1,  0.1,  0.3},
+//                                              { 0.3,  0.1, -0.1, -0.3},
+//                                              {-1.0,  0.0,  1.0,  2.0},
+//                                              { 1.0,  0.0, -1.0, -2.0}};
+//
+//    Matrix matrixA(size, size, dataA);
+//    Matrix matrixB(size, size, dataB);
+//
+//    // Act
+//    Matrix result = matrixA - matrixB;
+//
+//    // Assert
+//    Matrix goldResult(size, size, goldData);
+//    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
+//}
+//
+//TEST(MatrixOperationsTest, Can_Matrix_Scalar_Multiplication) {
+//    // Arrange
+//    constexpr double threshold{0.001};
+//    constexpr int size{4};
+//    constexpr double scalar{1.5};
+//    std::vector<std::vector<double>> data{{0.1,   0.2,  0.3,  0.4},
+//                                          {1.4,   1.3,  1.2,  1.1},
+//                                          {1.0,   2.0,  3.0,  4.0},
+//                                          {11.1, 11.2, 11.3, 11.4}};
+//
+//    std::vector<std::vector<double>> goldData{{0.15,   0.3,  0.45,  0.6},
+//                                              { 2.1,  1.95,   1.8, 1.65},
+//                                              { 1.5,   3.0,   4.5,  6.0},
+//                                              {16.65, 16.8, 16.95, 17.1}};
+//
+//    Matrix matrix(size, size, data);
+//
+//    // Act
+//    Matrix result = matrix * 1.5;
+//
+//    // Assert
+//    Matrix goldResult(size, size, goldData);
+//    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
+//}
+//
+//TEST(MatrixOperationsTest, Can_Matrices_Multiplication) {
+//    // Arrange
+//    constexpr double threshold{0.001};
+//    constexpr int size{3};
+//
+//    std::vector<std::vector<double>> dataA{{ 1.0, 4.0, 3.0},
+//                                           { 2.0, 1.0, 5.0},
+//                                           { 3.0, 2.0, 1.0}};
+//
+//    std::vector<std::vector<double>> dataB{{ 5.0, 2.0, 1.0},
+//                                           { 4.0, 3.0, 2.0},
+//                                           { 2.0, 1.0, 5.0}};
+//
+//    std::vector<std::vector<double>> goldData{{ 27.0, 17.0, 24.0},
+//                                              { 24.0, 12.0, 29.0},
+//                                              { 25.0, 13.0, 12.0}};
+//
+//    Matrix matrixA(size, size, dataA);
+//    Matrix matrixB(size, size, dataB);
+//
+//    // Act
+//    Matrix result = matrixA * matrixB;
+//
+//    // Assert
+//    Matrix goldResult(size, size, goldData);
+//    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
+//}
+//
+//TEST(MatrixOperationsTest, Can_Matrices_Multiplication_With_Diff_Size) {
+//    // Arrange
+//    constexpr double threshold{0.001};
+//
+//    std::vector<std::vector<double>> dataA{{ 1.0, 4.0, 3.0},
+//                                           { 2.0, 1.0, 5.0}};
+//
+//    std::vector<std::vector<double>> dataB{{ 5.0, 2.0},
+//                                           { 4.0, 3.0},
+//                                           { 2.0, 1.0}};
+//
+//    std::vector<std::vector<double>> goldData{{27.0, 17.0},
+//                                              {24.0, 12.0}};
+//
+//    Matrix matrixA(2, 3, dataA);
+//    Matrix matrixB(3, 2, dataB);
+//
+//    // Act
+//    Matrix result = matrixA * matrixB;
+//
+//    // Assert
+//    Matrix goldResult(2, 2, goldData);
+//    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
+//}
 
 //TEST(MatrixOperationsTest, Can_Take_Determinant) {
 //    // Arrange
