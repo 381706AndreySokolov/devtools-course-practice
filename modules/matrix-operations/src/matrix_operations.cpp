@@ -151,9 +151,9 @@ Matrix Matrix::transpose() {
 }
 
 Matrix Matrix::takeInverseMatrix() {
-    if (this->determinant() == 0) {
-        throw "Determinant are equal zero";
-    }
+    //if (this->determinant() == 0) {
+    //    throw "Determinant are equal zero";
+    //}
 
     int size{rows};
 
