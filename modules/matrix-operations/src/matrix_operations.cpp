@@ -139,17 +139,17 @@ double Matrix::determinant() {
     return sum12 - sum22;
 }
 
-//Matrix Matrix::transpose() {
-//    Matrix result(rows, cols, data);
-//
-//    for (int idx{0}; idx < getRows()-1; ++idx) {
-//        for (int jdx{idx + 1}; jdx < getCols(); ++jdx) {
-//            std::swap(result.data[jdx][idx], result.data[idx][jdx]);
-//        }
-//    }
-//    return result;
-//}
-//
+Matrix Matrix::transpose() {
+    Matrix result(rows, cols, data);
+
+    for (int idx{0}; idx < getRows()-1; ++idx) {
+        for (int jdx{idx + 1}; jdx < getCols(); ++jdx) {
+            std::swap(result.data[jdx][idx], result.data[idx][jdx]);
+        }
+    }
+    return result;
+}
+
 //Matrix Matrix::takeInverseMatrix() {
 //    if (this->determinant() == 0) {
 //        throw "Determinant are equal zero";

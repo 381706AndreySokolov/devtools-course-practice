@@ -31,7 +31,7 @@ class Matrix {
     bool operator!= (const Matrix& _matrix) const;
 
     double determinant();
-    //Matrix transpose();
+    Matrix transpose();
     //Matrix takeInverseMatrix();
 
  private:

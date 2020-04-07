@@ -319,31 +319,31 @@ TEST(MatrixOperationsTest, Can_Take_Determinant_With_Zero_Diag) {
     EXPECT_EQ(result, goldResult);
 }
 
-//TEST(MatrixOperationsTest, Can_Transpose_Matrix) {
-//    // Arrange
-//    constexpr double threshold{0.001};
-//    constexpr int size{4};
-//    constexpr double scalar{1.5};
-//    std::vector<std::vector<double>> data{{0.1,   0.2,  0.3,  0.4},
-//                                          {1.4,   1.3,  1.2,  1.1},
-//                                          {1.0,   2.0,  3.0,  4.0},
-//                                          {11.1, 11.2, 11.3, 11.4}};
-//
-//    std::vector<std::vector<double>> goldData{{0.1, 1.4, 1.0, 11.1},
-//                                              {0.2, 1.3, 2.0, 11.2},
-//                                              {0.3, 1.2, 3.0, 11.3},
-//                                              {0.4, 1.1, 4.0, 11.4}};
-//
-//    Matrix matrix(size, size, data);
-//
-//    // Act
-//    Matrix result = matrix.transpose();
-//
-//    // Assert
-//    Matrix goldResult(size, size, goldData);
-//    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
-//}
-//
+TEST(MatrixOperationsTest, Can_Transpose_Matrix) {
+    // Arrange
+    constexpr double threshold{0.001};
+    constexpr int size{4};
+    constexpr double scalar{1.5};
+    std::vector<std::vector<double>> data{{0.1,   0.2,  0.3,  0.4},
+                                          {1.4,   1.3,  1.2,  1.1},
+                                          {1.0,   2.0,  3.0,  4.0},
+                                          {11.1, 11.2, 11.3, 11.4}};
+
+    std::vector<std::vector<double>> goldData{{0.1, 1.4, 1.0, 11.1},
+                                              {0.2, 1.3, 2.0, 11.2},
+                                              {0.3, 1.2, 3.0, 11.3},
+                                              {0.4, 1.1, 4.0, 11.4}};
+
+    Matrix matrix(size, size, data);
+
+    // Act
+    Matrix result = matrix.transpose();
+
+    // Assert
+    Matrix goldResult(size, size, goldData);
+    ASSERT_NEAR_MATRIX(result, goldResult, threshold);
+}
+
 //TEST(MatrixOperationsTest, Can_Take_Inverse_Matrix) {
 //    // Arrange
 //    constexpr double threshold{0.001};
