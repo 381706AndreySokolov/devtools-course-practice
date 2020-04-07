@@ -173,8 +173,10 @@ Matrix Matrix::takeInverseMatrix() {
     N1   = 0.0;
     Ninf = 0.0;
     for (int row{0}; row < size; ++row) {
-        double colsum{0.0};
-        double rowsum{0.0};
+        double colsum;
+        double rowsum;
+        colsum = 0.0;
+        rowsum = 0.0;
         for (int col{0}; col < size; ++col) {
             rowsum += fabs(A0.data[row][col]);
             colsum += fabs(A0.data[col][row]);
