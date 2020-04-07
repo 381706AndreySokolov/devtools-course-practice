@@ -253,13 +253,12 @@ TEST(MatrixOperationsTest, Can_Take_Determinant) {
                                           { 5.0,  2.0, 77.0,  6.0},
                                           {71.1, 15.7, 26.0, 12.1}};
     Matrix matrix(4, 4, data);
-    constexpr double goldResult{6080.576};
 
     // Act
     double result{matrix.determinant()};
 
     // Assert
-    EXPECT_NEAR(result, goldResult, 0.001);
+    EXPECT_NEAR(result, 6080.576, 0.001);
 }
 
 TEST(MatrixOperationsTest, Can_Take_Zero_Determinant) {
