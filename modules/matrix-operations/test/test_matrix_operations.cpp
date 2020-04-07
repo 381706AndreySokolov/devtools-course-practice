@@ -113,6 +113,21 @@ TEST(MatrixOperationsTest, Can_Set_Data) {
     EXPECT_EQ(matrix.getData(), newData);
 }
 
+TEST(MatrixOperationsTest, Can_Assign_Matrix) {
+    // Arrange
+    std::vector<std::vector<double>> data{{2.2, 1.2, 45.2, 7.1},
+                                          {9.1, 2.3, 12.1, 2.3},
+                                          {12.3, 4.5, 6.1, 7.9}};
+    Matrix matrix(3, 4, data);
+    Matrix copyMatrix(1, 2);
+
+    // Act
+    copyMatrix = matrix;
+
+    // Assert
+    ASSERT_NEAR_MATRIX(copyMatrix, matrix, 0.001);
+}
+
 TEST(MatrixOperationsTest, Can_Add_Matrices) {
     // Arrange
     constexpr double threshold{0.001};
