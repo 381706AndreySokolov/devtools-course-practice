@@ -285,7 +285,7 @@ TEST(MatrixOperationsTest, Can_Take_Determinant_With_Zero_Diag) {
     Matrix matrix(4, 4, data);
 
     // Act
-    double result{matrix.determinant()};
+    double result = matrix.determinant();
 
     // Assert
     EXPECT_EQ(result, 99.0);
@@ -325,7 +325,7 @@ TEST(MatrixOperationsTest, Can_Take_Inverse_Matrix) {
     Matrix goldResult(3, 3, goldData);
 
     // Act
-    Matrix result{matrix.takeInverseMatrix()};
+    Matrix result = matrix.takeInverseMatrix();
 
     // Assert
     ASSERT_NEAR_MATRIX(result, goldResult, 0.001);
