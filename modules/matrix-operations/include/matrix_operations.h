@@ -30,8 +30,8 @@ class Matrix {
     bool operator== (const Matrix& _matrix) const;
     bool operator!= (const Matrix& _matrix) const;
 
-    //double determinant();
-    //Matrix transpose();
+    double determinant();
+    Matrix transpose();
     //Matrix takeInverseMatrix();
 
  private:
